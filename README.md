@@ -33,7 +33,6 @@ This project is based on the [`A1_That_s_What_I_LIKE.pdf`](https://github.com/my
 
 This system provides a practical comparison of word embedding models and their ability to capture contextual relationships in text.
 
-
 ## Dataset
 The dataset used in this project is the Reuters corpus from NLTK. It includes 10,000 sentences, each represented as a list of words.
 
@@ -52,8 +51,8 @@ To set up the project locally, follow these steps:
     ```bash
     pip install -r requirements.txt
     ```
-4. Download the gensim model and put in app/code/models directory
-
+4. Download the gensim model and put in app/code/models directory:
+    - [Gensim Model on Google Drive](https://drive.google.com/file/d/1lbzkpc0_H19jULC5eJDxDAVY61qAQl6L/view?usp=sharing)
 5. Run the application:
     ```bash
     python app.py

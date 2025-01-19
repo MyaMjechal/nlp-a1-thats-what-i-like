@@ -13,9 +13,6 @@ from utils import Skipgram, SkipgramNeg, Glove
 
 app = Flask(__name__)
 
-# # Load the corpus
-# corpus = pd.read_csv('data/corpus.csv')
-
 # Load trained data
 skipgram_data = pickle.load(open('app/code/models/skipgrams.pkl', 'rb'))
 skipgram_neg_data = pickle.load(open('app/code/models/skipgrams-neg.pkl', 'rb'))
@@ -51,44 +48,18 @@ glove.eval()
 
 gensim = pickle.load(open('app/code/models/gensim.pt', 'rb'))
 
-# Function to compute dot product similarity
-def compute_similarity(query, corpus):
-    # # Convert corpus and query to vectors
-    # query_vector = np.array([ord(char) for char in query])  # Simple character-based vector
-    # similarities = []
-
-    # for context in corpus['context']:
-    #     context_vector = np.array([ord(char) for char in context])
-    #     # Compute dot product (padding shorter vectors with zeros)
-    #     max_len = max(len(query_vector), len(context_vector))
-    #     query_vector = np.pad(query_vector, (0, max_len - len(query_vector)))
-    #     context_vector = np.pad(context_vector, (0, max_len - len(context_vector)))
-
-    #     dot_product = np.dot(query_vector, context_vector)
-    #     similarities.append(dot_product)
-
-    # # Get top 10 similar contexts
-    # top_indices = np.argsort(similarities)[::-1][:10]
-    # return corpus.iloc[top_indices].to_dict(orient='records')
-    # Mock results for testing
-    return [
-        {"id": 1, "context": "This is a mock result for testing."},
-        {"id": 2, "context": "Another example result."},
-        {"id": 3, "context": "Yet another mock context."}
-    ]
 
 # home page
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
 # search page
 @app.route('/search', methods=['POST'])
 def search():
     if request.method == 'POST':
-        print("Received search request", request.form)
         query = request.form.get('query')
-        print(f"Received query: {query}")
         similar_words_results = []  # To store top 10 most similar words for each model
 
         # Split the query into individual words
@@ -104,7 +75,6 @@ def search():
 
         # List model names
         model_names = ["Skipgram", "Skipgram Negative Sampling", "GloVe", "GloVe (Gensim)"]
-        # heading = "Most similar words are:"  # To load only after submission
 
         return jsonify({
             'query': query,

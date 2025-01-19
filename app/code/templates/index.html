@@ -7,8 +7,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #ADD8E6; /* Primary color background */
-            color: white; /* Primary color text */
+            background-color: #ADD8E6;
+            color: white;
         }
         .container {
             background-color: white;
@@ -53,8 +53,8 @@
         table thead th {
             vertical-align: bottom;
             border-bottom: 2px solid #dee2e6;
-            background-color: #007bff; /* Blue theme for table header */
-            color: white; /* White text for table header */
+            background-color: #007bff;
+            color: white;
         }
 
         table tbody + tbody {
@@ -76,11 +76,11 @@
         }
 
         table tbody tr:nth-child(even) {
-            background-color: #f2f2f2; /* Light grey background for even rows */
+            background-color: #f2f2f2;
         }
 
         table tbody tr:hover {
-            background-color: #d1ecf1; /* Light blue background on hover */
+            background-color: #d1ecf1;
         }
     </style>
 </head>
@@ -90,7 +90,7 @@
         <form method="POST" action="/search" id="search_form">
             <div class="form-row">
                 <div class="col">
-                    <input type="text" name="query" id="query" class="form-control" placeholder="Enter search query" required>
+                    <input type="text" name="query" id="query" class="form-control" placeholder="Enter a search word to check similarity" required>
                 </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-primary">Search</button>
