@@ -7,6 +7,7 @@
 - [Usage](#usage)
 - [Screenshots of Website Working](#screenshots-of-website-working)
 - [Model Comparison and Analysis](#model-comparison-and-analysis)
+- [Similarity Scores](#similarity-scores)
 
 ## Student Information
 - **Name:** Mya Mjechal
@@ -76,7 +77,7 @@ _Figure 2: Harry Keyword Search Result of GloVe Model and GloVe (Gensim) Model_
 | Skipgram        | 2        | 10.466488          | 04 min 03 sec          | 0.00%              | 0.00%              |
 | Skipgram (NEG)        | 2        | 1.296758          | 04 min 13 sec          | 0.00%              | 0.00%              |
 | GloVe        | 2        | 3.063797          | 04 min 11 sec          | 0.00%              | 0.00%              |
-| GloVe (Gensim)        | -        | -          | -          | 93.87%              | 55.45%              |
+| GloVe (Gensim)        | -        | -          | -          | 55.45%              | 93.87%              |
 
 ## Similarity Scores
 | Model          | Skipgram | Skipgram (NEG) | GloVe | GloVe (Genism) |
