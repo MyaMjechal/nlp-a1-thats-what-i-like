@@ -1,2 +1,3 @@
 venv/
 app/code/models/gensim.pt
+__pycache__/

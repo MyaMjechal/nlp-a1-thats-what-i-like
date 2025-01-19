@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Engine</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Simple Search Engine</h1>
+        <form method="POST" action="/search" id="search_form">
+            <input type="text" name="query" id="query" class="form-control" placeholder="Enter search query" required>
+            <button type="submit" class="btn btn-primary d-block mx-auto mt-3">Search</button>
+        </form>
+
+        <!-- Results Container -->
+        <div id="results" class="mt-4">
+            <div class="row">
+                <!-- Dynamic model results -->
+                <div id="model-results" class="col-md-12">
+                    <!-- Results for each model will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('search_form');
+        const resultDiv = document.getElementById('results');
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent form submission
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('/search', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json(); // Parse JSON response
+
+                    // Clear previous content
+                    resultDiv.innerHTML = ''; 
+                    resultDiv.style.display = 'block'; 
+
+                    const models = data.models;
+                    const results = data.results;
+
+                    console.log("Results:", results);
+
+                    // Create table structure
+                    const tableContainer = document.createElement('div');
+                    tableContainer.classList.add('row');
+
+                    // Display results for the first 3 models (Skipgram, Skipgram Negative Sampling, GloVe)
+                    results[0].forEach((modelResults, index) => {
+                        const modelName = models[index]; // Get model name (e.g., "Skipgram")
+
+                        // Get the top 10 results for the current model
+                        const topResults = modelResults.slice(0, 10);
+
+                        const colDiv = document.createElement('div');
+                        colDiv.classList.add('col-md-6');
+
+                        const modelTitle = document.createElement('h3');
+                        modelTitle.textContent = `${modelName} Results`;
+
+                        const table = document.createElement('table');
+                        table.classList.add('table', 'table-bordered');
+
+                        // Table Header
+                        const tableHeader = document.createElement('thead');
+                        const headerRow = document.createElement('tr');
+                        const th1 = document.createElement('th');
+                        th1.textContent = 'Index';
+                        const th2 = document.createElement('th');
+                        th2.textContent = 'Context';
+                        headerRow.appendChild(th1);
+                        headerRow.appendChild(th2);
+                        tableHeader.appendChild(headerRow);
+                        table.appendChild(tableHeader);
+
+                        // Table Body
+                        const tableBody = document.createElement('tbody');
+                        topResults.forEach((result, idx) => {
+                            const row = document.createElement('tr');
+                            const td1 = document.createElement('td');
+                            td1.textContent = idx + 1;
+                            const td2 = document.createElement('td');
+                            td2.textContent = result; // Assuming result is a context string
+                            row.appendChild(td1);
+                            row.appendChild(td2);
+                            tableBody.appendChild(row);
+                        });
+                        table.appendChild(tableBody);
+
+                        colDiv.appendChild(modelTitle);
+                        colDiv.appendChild(table);
+
+                        tableContainer.appendChild(colDiv);
+                    });
+
+                    // Display results for the gensim model (results[1] to results[10])
+                    const gensimResults = results.slice(1, 11); // Get Gensim results (results[1] to results[10])
+
+                    const gensimColDiv = document.createElement('div');
+                    gensimColDiv.classList.add('col-md-6');
+
+                    const gensimTitle = document.createElement('h3');
+                    gensimTitle.textContent = 'Gensim Model Results';
+
+                    const gensimTable = document.createElement('table');
+                    gensimTable.classList.add('table', 'table-bordered');
+
+                    // Table Header
+                    const gensimTableHeader = document.createElement('thead');
+                    const gensimHeaderRow = document.createElement('tr');
+                    const gensimTh1 = document.createElement('th');
+                    gensimTh1.textContent = 'Index';
+                    const gensimTh2 = document.createElement('th');
+                    gensimTh2.textContent = 'Context';
+                    gensimHeaderRow.appendChild(gensimTh1);
+                    gensimHeaderRow.appendChild(gensimTh2);
+                    gensimTableHeader.appendChild(gensimHeaderRow);
+                    gensimTable.appendChild(gensimTableHeader);
+
+                    // Table Body
+                    const gensimTableBody = document.createElement('tbody');
+                    gensimResults.forEach((result, idx) => {
+                        const row = document.createElement('tr');
+                        const td1 = document.createElement('td');
+                        td1.textContent = idx + 1;
+                        const td2 = document.createElement('td');
+                        td2.textContent = result; // Assuming result is a context string
+                        row.appendChild(td1);
+                        row.appendChild(td2);
+                        gensimTableBody.appendChild(row);
+                    });
+                    gensimTable.appendChild(gensimTableBody);
+
+                    gensimColDiv.appendChild(gensimTitle);
+                    gensimColDiv.appendChild(gensimTable);
+
+                    tableContainer.appendChild(gensimColDiv);
+
+                    // Append the generated table to resultDiv
+                    resultDiv.appendChild(tableContainer);
+
+                } else {
+                    console.error('Error:', response.status);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
