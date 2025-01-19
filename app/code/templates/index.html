@@ -5,33 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Engine</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ADD8E6; /* Primary color background */
+            color: white; /* Primary color text */
+        }
+        .container {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 60px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        footer {
+            background-color: #0056b3;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            margin-top: 20px;
+            bottom: 0;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+            background-color: #007bff; /* Blue theme for table header */
+            color: white; /* White text for table header */
+        }
+
+        table tbody + tbody {
+            border-top: 2px solid #dee2e6;
+        }
+
+        table-bordered {
+            border: 1px solid #dee2e6;
+        }
+
+        table-bordered th,
+        table-bordered td {
+            border: 1px solid #dee2e6;
+        }
+
+        table-bordered thead th,
+        table-bordered thead td {
+            border-bottom-width: 2px;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f2f2f2; /* Light grey background for even rows */
+        }
+
+        table tbody tr:hover {
+            background-color: #d1ecf1; /* Light blue background on hover */
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Simple Search Engine</h1>
         <form method="POST" action="/search" id="search_form">
-            <input type="text" name="query" id="query" class="form-control" placeholder="Enter search query" required>
-            <button type="submit" class="btn btn-primary d-block mx-auto mt-3">Search</button>
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" name="query" id="query" class="form-control" placeholder="Enter search query" required>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
         </form>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="text-center mt-4" style="display: none;">
+            <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+            </div>
+        </div>
 
         <!-- Results Container -->
         <div id="results" class="mt-4">
             <div class="row">
-                <!-- Dynamic model results -->
-                <div id="model-results" class="col-md-12">
-                    <!-- Results for each model will be added here -->
-                </div>
+            <!-- Dynamic model results -->
+            <div id="model-results" class="col-md-12">
+                <!-- Results for each model will be added here -->
             </div>
-        </div>
+            </div>
+        </div>        
     </div>
+
+    <footer>
+        <p>2025 Simple Search Engine. Coded by Mya Mjechal (Student ID - st125469).</p>
+    </footer>
 
     <script>
         const form = document.getElementById('search_form');
         const resultDiv = document.getElementById('results');
+        const loadingIndicator = document.getElementById('loading');
 
         form.addEventListener('submit', async function(event) {
             event.preventDefault(); // Prevent form submission
             const formData = new FormData(form);
+
+            // Show loading indicator
+            loadingIndicator.style.display = 'block';
 
             try {
                 const response = await fetch('/search', {
@@ -41,6 +140,9 @@
 
                 if (response.ok) {
                     const data = await response.json(); // Parse JSON response
+
+                    // Hide loading indicator
+                    loadingIndicator.style.display = 'none';
 
                     // Clear previous content
                     resultDiv.innerHTML = ''; 
