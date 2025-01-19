@@ -12,7 +12,8 @@
 ## Student Information
 - **Name:** Mya Mjechal
 - **Student ID:** st125469
-- **Course:** AIT - Data Science and Artificial Intelligence (DSAI)
+- **Major:** AIT - Data Science and Artificial Intelligence (DSAI)
+- **Course:** AT82.05: Artificial Intelligence: Natural Language Understanding
 - **Assignment:** NLP A1
 
 ## System Overview
