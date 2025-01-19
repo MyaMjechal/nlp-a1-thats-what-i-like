@@ -17,7 +17,7 @@
 - **Assignment:** NLP A1
 
 ## System Overview
-This project is based on the [`A1_That_s_What_I_LIKE.pdf`](https://github.com/myamjechal/nlp-a1-thats-what-i-like/blob/main/A1_That_s_What_I_LIKE.pdf) document. The "That's What I LIKE" system is an NLP application that identifies contextually similar words or paragraphs for a given query. It evaluates and compares four word embedding models:
+This project is based on the [`A1_That_s_What_I_LIKE.pdf`](https://github.com/MyaMjechal/nlp-a1-thats-what-i-like/blob/main/A1_That_s_What_I_LIKE.pdf) document. The "That's What I LIKE" system is an NLP application that identifies contextually similar words or paragraphs for a given query. It evaluates and compares four word embedding models:
 1. Skipgram
 2. Skipgram with Negative Sampling
 3. GloVe
@@ -43,7 +43,7 @@ To set up the project locally, follow these steps:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/myamjechal/nlp-a1-thats-what-i-like.git
+    git clone https://github.com/MyaMjechal/nlp-a1-thats-what-i-like.git
     ```
 2. Navigate to the project directory:
     ```bash
