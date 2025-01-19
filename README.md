@@ -71,9 +71,14 @@ _Figure 1: Harry Keyword Search Result of Skipgram Model and Skipgram Negative S
 _Figure 2: Harry Keyword Search Result of GloVe Model and GloVe (Gensim) Model_
 
 ## Model Comparison and Analysis
-| Model          | Window Size | Training Loss | Training Time | Syntatic Accuracy | Semantic Accuracy | Correlation Score (Similarity) |
-|----------------|-------------|---------------|---------------|-------------------|-------------------|--------------------------------|
-| Skipgram        | 2        | 10.466488          | 242.98 sec          | 0.00%              | 0.00%              | 0.04                           |
-| Skipgram (NEG)        | 2        | 1.296758          | 253.03 sec          | 0.00%              | 0.00%              | -0.04                           |
-| GloVe        | 2        | 3.063797          | 251.27 sec          | 0.00%              | 0.00%              | 0.11                           |
-| GloVe (Gensim)        | -        | -          | -          | 93.87%              | 55.45%              | 0.60                            |
+| Model          | Window Size | Training Loss | Training Time | Syntatic Accuracy | Semantic Accuracy |
+|----------------|-------------|---------------|---------------|-------------------|-------------------|
+| Skipgram        | 2        | 10.466488          | 04 min 03 sec          | 0.00%              | 0.00%              |
+| Skipgram (NEG)        | 2        | 1.296758          | 04 min 13 sec          | 0.00%              | 0.00%              |
+| GloVe        | 2        | 3.063797          | 04 min 11 sec          | 0.00%              | 0.00%              |
+| GloVe (Gensim)        | -        | -          | -          | 93.87%              | 55.45%              |
+
+## Similarity Scores
+| Model          | Skipgram | Skipgram (NEG) | GloVe | GloVe (Genism) |
+|----------------|-------------|---------------|---------------|-------------------|
+| Spearman Correlation        | 0.04        | -0.04          | 0.11          | 0.60              |
