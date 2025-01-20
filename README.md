@@ -49,7 +49,7 @@ To set up the project locally, follow these steps:
     - [Gensim Model on Google Drive](https://drive.google.com/file/d/1lbzkpc0_H19jULC5eJDxDAVY61qAQl6L/view?usp=sharing)
 3. Navigate to the project directory:
     ```bash
-    cd nlp-a1-thats-what-i-like/app/code
+    cd app/code
     ```
 4. Install the required dependencies:
     ```bash
