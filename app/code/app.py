@@ -90,8 +90,8 @@ def process_gensim_model(query_words):
     combined_vector = None
     for word in query_words:
         # Check if the word exists in the Gensim model
-        if word in gensim:
-            word_vector = gensim.get_vector(word)
+        if word.lower() in gensim:
+            word_vector = gensim.get_vector(word.lower())
         else:
             word_vector = gensim.get_vector('unknown')
 
