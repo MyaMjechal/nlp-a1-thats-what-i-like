@@ -45,16 +45,16 @@ To set up the project locally, follow these steps:
     ```bash
     git clone https://github.com/MyaMjechal/nlp-a1-thats-what-i-like.git
     ```
-2. Navigate to the project directory:
+2. Download the gensim model and put in `app/code/models` directory:
+    - [Gensim Model on Google Drive](https://drive.google.com/file/d/1lbzkpc0_H19jULC5eJDxDAVY61qAQl6L/view?usp=sharing)
+3. Navigate to the project directory:
     ```bash
     cd nlp-a1-thats-what-i-like/app/code
     ```
-3. Install the required dependencies:
+4. Install the required dependencies:
     ```bash
     pip install -r requirements.txt
     ```
-4. Download the gensim model and put in app/code/models directory:
-    - [Gensim Model on Google Drive](https://drive.google.com/file/d/1lbzkpc0_H19jULC5eJDxDAVY61qAQl6L/view?usp=sharing)
 5. Run the application:
     ```bash
     python app.py

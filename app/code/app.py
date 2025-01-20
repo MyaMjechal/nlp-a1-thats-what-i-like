@@ -5,8 +5,8 @@ import pickle
 import sys
 import os
 
-# Add the main project folder to the Python path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)).rsplit('/', 2)[0])
+# # Add the main project folder to the Python path
+# sys.path.append(os.path.dirname(os.path.abspath(__file__)).rsplit('/', 2)[0])
 
 from utils import Skipgram, SkipgramNeg, Glove
 
@@ -14,9 +14,9 @@ from utils import Skipgram, SkipgramNeg, Glove
 app = Flask(__name__)
 
 # Load trained data
-skipgram_data = pickle.load(open('app/code/models/skipgrams.pkl', 'rb'))
-skipgram_neg_data = pickle.load(open('app/code/models/skipgrams-neg.pkl', 'rb'))
-glove_data = pickle.load(open('app/code/models/glove.pkl', 'rb'))
+skipgram_data = pickle.load(open('models/skipgrams.pkl', 'rb'))
+skipgram_neg_data = pickle.load(open('models/skipgrams-neg.pkl', 'rb'))
+glove_data = pickle.load(open('models/glove.pkl', 'rb'))
 
 skipgram_word2index = skipgram_data['word2index']
 skipgram_neg_word2index = skipgram_neg_data['word2index']
@@ -32,21 +32,21 @@ glove_emb_size = glove_data['emb_size']
 
 # Instantiate models
 skipgram = Skipgram(skipgram_voc_size, skipgram_emb_size, skipgram_word2index)
-skipgram.load_state_dict(torch.load('app/code/models/skipgram.pt',
+skipgram.load_state_dict(torch.load('models/skipgram.pt',
                                     map_location=torch.device('cpu')))
 skipgram.eval()
 
 skipgramNeg = SkipgramNeg(skipgram_neg_voc_size, skipgram_neg_emb_size, skipgram_neg_word2index)
-skipgramNeg.load_state_dict(torch.load('app/code/models/skipgram-neg.pt',
+skipgramNeg.load_state_dict(torch.load('models/skipgram-neg.pt',
                                        map_location=torch.device('cpu')))
 skipgramNeg.eval()
 
 glove = Glove(glove_voc_size, glove_emb_size, glove_word2index)
-glove.load_state_dict(torch.load('app/code/models/glove.pt',
+glove.load_state_dict(torch.load('models/glove.pt',
                                  map_location=torch.device('cpu')))
 glove.eval()
 
-gensim = pickle.load(open('app/code/models/gensim.pt', 'rb'))
+gensim = pickle.load(open('models/gensim.pt', 'rb'))
 
 
 # home page
