@@ -67,10 +67,10 @@ Please refer to the assignment PDF for more detailed instructions.
 
 ## Screenshots of Website Working
 ![Website Screenshot 1](images/web_1.png)
-_Figure 1: Harry Keyword Search Result of Skipgram Model and Skipgram Negative Sampling Model_
+_Figure 1: `harry` Keyword Search Result of Skipgram Model and Skipgram Negative Sampling Model_
 
 ![Website Screenshot 2](images/web_2.png)
-_Figure 2: Harry Keyword Search Result of GloVe Model and GloVe (Gensim) Model_
+_Figure 2: `harry` Keyword Search Result of GloVe Model and GloVe (Gensim) Model_
 
 ## Model Comparison and Analysis
 | Model          | Window Size | Training Loss | Training Time | Syntatic Accuracy | Semantic Accuracy |
